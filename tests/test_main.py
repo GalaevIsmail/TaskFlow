@@ -1,5 +1,17 @@
-from fastapi.testclient import TestClient
+import os
 
+# Тестовые настройки для GitHub Actions
+os.environ.setdefault(
+    "DATABASE_URL",
+    "sqlite:///./test.db"
+)
+
+os.environ.setdefault(
+    "SECRET_KEY",
+    "test-secret-key-for-github-actions"
+)
+
+from fastapi.testclient import TestClient
 from app.main import app
 
 client = TestClient(app)
